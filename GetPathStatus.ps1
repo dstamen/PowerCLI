@@ -1,3 +1,7 @@
+# PowerCLI Script for getting path selection policy for hosts
+# @davidstamen
+# http://davidstamen.com
+
 $vmhosts = @(Get-VMHost)
 foreach ($vmhost in $vmhosts) {
 	$esxcli = Get-EsxCli -VMHost $vmhost
