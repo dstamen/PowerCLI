@@ -1,3 +1,7 @@
+# PowerCLI Script for reloading syslogserver on hosts
+# @davidstamen
+# http://davidstamen.com
+
 $vmhosts = @(Get-VMHost)
 
 # Configure syslog on each host in vCenter
