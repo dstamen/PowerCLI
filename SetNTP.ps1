@@ -1,4 +1,7 @@
-# Configure syslog on each host in vCenter
+# PowerCLI Script for adding ntp to hosts
+# @davidstamen
+# http://davidstamen.com
+
 
 #Set NTP server for all hosts
 Get-VMHost | Add-VMHostNTPServer -NTPserver us.pool.ntp.org
