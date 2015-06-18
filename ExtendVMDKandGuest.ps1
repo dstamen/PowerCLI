@@ -1,3 +1,7 @@
+# PowerCLI Script for adding vmdk to VM and extending disk in windows
+# @davidstamen
+# http://davidstamen.com
+
 param(
   [string]$VM
 )
