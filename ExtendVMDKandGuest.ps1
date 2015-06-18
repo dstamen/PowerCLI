@@ -3,6 +3,7 @@ param(
 )
 $VM = Get-VM $VM
 $HardDisk = Read-Host "Enter VMware Hard Disk (Ex. 1)"
+Get-VM $VM|Get-HardDisk|Select Parent, Name, CapacityGB
 $HardDisk = "Hard Disk " + $HardDisk
 $HardDiskSize = Read-Host "Enter the new Hard Disk size in GB (Ex. 50)"
 $VolumeLetter = Read-Host "Enter the volume letter (Ex. c,d,e,f)"
