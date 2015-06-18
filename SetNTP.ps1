@@ -2,6 +2,11 @@
 # @davidstamen
 # http://davidstamen.com
 
+# Setup common variables to use
+$vcenter = "vcenter.lab.local"
+
+# Connect to vCenter
+Connect-VIServer -Server $vcenter
 
 #Set NTP server for all hosts
 Get-VMHost | Add-VMHostNTPServer -NTPserver us.pool.ntp.org

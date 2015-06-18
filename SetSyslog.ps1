@@ -2,9 +2,9 @@
 # @davidstamen
 # http://davidstamen.com
 
-# Setup common variables to usedefaultisolationaddress
+# Setup common variables to use
 $vcenter = "vcenter.lab.local"
-$syslogservers = "udp://syslog.labe.local:514"
+$syslogservers = "udp://syslog.lab.local:514"
 
 Connect-VIServer -Server $vcenter
 
