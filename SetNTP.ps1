@@ -3,7 +3,7 @@
 # http://davidstamen.com
 
 # Setup common variables to use
-$vcenter = "vcenter.lab.local"
+$vcenter = "vc.lab.local"
 
 # Connect to vCenter
 Connect-VIServer -Server $vcenter
