@@ -18,7 +18,6 @@ if(!($Cluster))
 if(!(Get-Cluster $Cluster -EA SilentlyContinue))
 {
 	Write-Host -Fore RED "No cluster found with the name: $Cluster "
-	Pause
 	Write-Host -Fore YELLOW "These clusters where found in the vCenter you have connected to:"
 	Get-Cluster | sort Name | Select Name
 	exit
