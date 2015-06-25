@@ -22,4 +22,4 @@ if(!(Get-Cluster $Cluster -EA SilentlyContinue))
 	Get-Cluster | sort Name | Select Name
 	exit
 }
-Get-Cluster $Cluster|Get-VMHost|get-VMHostHBA -Type iScsi | Where {$_.Model -eq "iSCSI Software Adapter"}| Select VMhost, IScsiname|ft -a
+Get-Cluster $Cluster|Get-VMHost|get-VMHostHBA -Type iScsi | Where {$_.Model -eq "iSCSI Software Adapter"}| Select VMhost, IScsiname|Sort-Object VMHost | ft -a
