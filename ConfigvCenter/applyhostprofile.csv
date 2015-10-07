@@ -1,0 +1,4 @@
+Entity,Profile
+esxi01.lab.local,HostProfile
+esxi02.lab.local,HostProfile
+esxi03.lab.local,HostProfile
