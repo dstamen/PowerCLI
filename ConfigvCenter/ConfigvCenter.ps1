@@ -2,6 +2,8 @@
 $vcenter = "vc.lab.local"
 $esxusername = "root"
 $esxpassword = "password"
+$DSC = "DSC01"
+$Datacenter = "Lab"
 
 #Connect to vCenter
 #Connect-VIServer -Server $vCenter
@@ -38,7 +40,7 @@ foreach ($datastore in $csv) {
 # Create Datastore Cluster and Move Datastores In
 Write-Host "Creating Datastore Cluster and Adding Datastores" -ForegroundColor "Green"
 $csv = Import-CSV .\createdatastores.csv
-New-DatastoreCluster -Name 'DSC01' -Location 'Lab'
+New-DatastoreCluster -Name $DSC -Location $Datacenter
 foreach ($datastore in $csv) {
   Move-Datastore $datastore.Name -Destination $datastore.DatastoreCluster
 }
