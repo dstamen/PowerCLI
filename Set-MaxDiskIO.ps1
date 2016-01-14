@@ -15,6 +15,5 @@ $esxHosts = Get-Cluster $Cluster | Get-VMHost | Where { $_.PowerState -eq "Power
 
 #For each host set DiskMaxIOsize to 4MB
 foreach ($esx in $esxHosts) {
-  $esxcli = Get-EsxCli -VMHost $esx
   Get-AdvancedSetting -Entity $esx -Name Disk.DiskMaxIOSize | Set-AdvancedSetting -Value 4096 -Confirm:$false
 }
