@@ -2,30 +2,43 @@
 # @davidstamen
 # http://davidstamen.com
 
-param(
-  [string]$VMName
-)
+#Define Variables
+Write-Host "Prompt For Guest Credentials" -ForegroundColor Yellow
+$Cred = Get-Credential
+$VMs = "VM1","VM2"
+#$VMs = Get-VM VM* | Sort Name
 
-$VM = Get-VM $VMName
+Foreach ($VMName in $VMs) {
+  $VM = Get-VM $VMName
 
-$File = "VMware-v4vdesktopagent-x86_64-6.2.0-3295266.exe"
-$Param = "/s /v/qn REBOOT=Reallysuppress"
-$SrcPath = "c:\"
-$DstPath = "c:\temp\"
-$Fullpath = $SrcPath + $File
+  $File = "VMware-v4vdesktopagent-x86_64-6.2.0-3295266.exe"
+  $Param = "/s /v/qn REBOOT=Reallysuppress"
+  $SrcPath = "c:\"
+  $DstPath = "c:\temp\"
+  $Fullpath = $SrcPath + $File
 
-Write-Host Copying $Fullpath to $VMName
-Copy-VMGuestFile -VM $VM -Source $Fullpath -Destination $DstPath -LocalToGuest -Force
+  Write-Host Copying $Fullpath to $VMName -ForegroundColor Cyan
+  Copy-VMGuestFile -VM $VM -Source $Fullpath -Destination $DstPath -LocalToGuest -GuestCredential $Cred -Force
 
-$Command = $DstPath + $File + $Param
-$Command2 = "del " + $DstPath + $File
+  $Command = $DstPath + $File + $Param
+  $Command2 = "del " + $DstPath + $File
 
-Write-Host Executing $Command within guest operating system of $VMName
-$Result = Invoke-VMScript -VM $VM  -ScriptText $Command
-$ExitCode = $Result.ExitCode
-Write-Host $VMName returned exit code $ExitCode
-
-Write-Host Executing $Command2 within guest operating system of $VMName
-$Result2 = Invoke-VMScript -VM $VM  -ScriptText $Command2
-$ExitCode2 = $Result2.ExitCode
-Write-Host $VMName returned exit code $ExitCode2
+  Write-Host Executing $Command within guest operating system of $VMName -ForegroundColor White
+  $Result = Invoke-VMScript -VM $VM  -ScriptText $Command -GuestCredential $Cred
+  $ExitCode = $Result.ExitCode
+  if ($ExitCode = "0") {
+    Write-Host $VMName returned exit code $ExitCode -ForegroundColor Green
+  }
+  Else {
+    Write-Host $VMName returned exit code $ExitCode -ForegroundColor Red
+  }
+  Write-Host Executing $Command2 within guest operating system of $VMName -ForegroundColor White
+  $Result2 = Invoke-VMScript -VM $VM  -ScriptText $Command2 -GuestCredential $Cred
+  $ExitCode2 = $Result2.ExitCode
+  if ($ExitCode2 = "0") {
+    Write-Host $VMName returned exit code $ExitCode2 -ForegroundColor Green
+  }
+  Else {
+    Write-Host $VMName returned exit code $ExitCode2 -ForegroundColor Red
+  }
+}
