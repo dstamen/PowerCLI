@@ -11,6 +11,7 @@ $VMs = "VM1","VM2"
 Foreach ($VMName in $VMs) {
   $VM = Get-VM $VMName
 
+#Define file information. Include File Name, Parameters, Source and Destination
   $File = "VMware-v4vdesktopagent-x86_64-6.2.0-3295266.exe"
   $Param = "/s /v/qn REBOOT=Reallysuppress"
   $SrcPath = "c:\"
@@ -20,7 +21,9 @@ Foreach ($VMName in $VMs) {
   Write-Host Copying $Fullpath to $VMName -ForegroundColor Cyan
   Copy-VMGuestFile -VM $VM -Source $Fullpath -Destination $DstPath -LocalToGuest -GuestCredential $Cred -Force
 
+  #Define Install File Command
   $Command = $DstPath + $File + $Param
+  #Define Delete File Command
   $Command2 = "del " + $DstPath + $File
 
   Write-Host Executing $Command within guest operating system of $VMName -ForegroundColor White
