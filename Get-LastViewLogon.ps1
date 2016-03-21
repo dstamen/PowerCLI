@@ -5,7 +5,7 @@
 #Define Variables
 $StartDate = (Get-date).AddDays(-14)
 $EndDate = Get-Date
-$EventType = "BROKER_USERLOGGEDIN"#checks for loggedin events
+$EventType = "BROKER_USERLOGGEDIN"
 $Events = Get-EventReport -ViewName user_events -StartDate $StartDate -EndDate $EndDate|Where-Object {$_.eventtype -eq $EventType}|Select userdisplayname,time
 $Users = $Events.userdisplayname|Select-Object -Uniq
 
