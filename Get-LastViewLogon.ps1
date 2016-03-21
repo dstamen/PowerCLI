@@ -3,10 +3,11 @@
 # http://davidstamen.com
 
 #Define Variables
-$StartDate = (Get-date).AddDays(-14)
-$EndDate = Get-Date
+#$StartDate = "01/01/2016" #uncomment to look by a range of dates
+#$EndDate = Get-Date #uncomment to look by a range of dates
 $EventType = "BROKER_USERLOGGEDIN"
-$Events = Get-EventReport -ViewName user_events -StartDate $StartDate -EndDate $EndDate|Where-Object {$_.eventtype -eq $EventType}|Select userdisplayname,time
+#$Events = Get-EventReport -ViewName user_events -StartDate $StartDate -EndDate $EndDate|Where-Object {$_.eventtype -eq $EventType}|Select userdisplayname,time #uncomment to look by a range of dates
+$Events = Get-EventReport -ViewName user_events|Where-Object {$_.eventtype -eq $EventType}|Select userdisplayname,time
 $Users = $Events.userdisplayname|Select-Object -Uniq
 
 #Find Last Logon
