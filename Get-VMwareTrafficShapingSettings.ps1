@@ -70,9 +70,9 @@ function Get-dvSwPg{
   }
 }
 Foreach ($VirtualSwitch in Get-VirtualSwitch -Distributed)  {
-  Foreach ($VirtualPortGroup in Get-VirtualPortGroup -VirtualSwitch $VirtualSwitch) {
+  Foreach ($VirtualPortGroup in Get-VirtualPortGroup -VirtualSwitch $VirtualSwitch|Where {$_.Name -notlike "*DVUplinks*"}) {
       Write "$VirtualPortGroup on $VirtualSwitch"
       $dvPg = Get-dvSwPg -dvSw $VirtualSwitch.ExtensionData -PGName $VirtualPortGroup
-      Get-dvPgTrafficShaping -dvPg $dvPg|fl
+      Get-dvPgTrafficShaping -dvPg $dvPg|ft
   }
 }
