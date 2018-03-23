@@ -16,11 +16,21 @@ Get-VMhost -Location $Cluster | where { $_.PowerState -eq "PoweredOn" -and $_.Co
 
     Write-host "Preparing $($_.Name) for ESXCLI" -ForegroundColor Yellow
 
-    $ESXCLI = Get-EsxCli -VMHost $_
+    $ESXCLI = Get-EsxCli -VMHost $_ -V2
 
     # Install VIBs
     Write-host "Installing VIB on $($_.Name)" -ForegroundColor Yellow
-    $action = $ESXCLI.software.vib.install($null,$null,$null,$null,$null,$true,$null,$null,$VIBPATH)
+		
+		# Create Installation Arguments
+		$insParm = @{
+			viburl = $viburl
+			dryrun = $false
+			nosigcheck = $true
+			maintenancemode = $false
+			force = $false
+		}
+	
+	$action = $ESXCLI.software.vib.install.Invoke($insParm)
 
     # Verify VIB installed successfully
     if ($action.Message -eq "Operation finished successfully."){Write-host "Action Completed successfully on $($_.Name)" -ForegroundColor Green} else {Write-host $action.Message -ForegroundColor Red}
