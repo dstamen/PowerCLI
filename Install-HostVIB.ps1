@@ -4,7 +4,7 @@
 
 # Define Variables
 $Cluster = "Cluster"
-$viburl = "/vmfs/volumes/NFS01/VIB/cisco/scsi-fnic_1.6.0.24-1OEM.600.0.0.2494585.vib"
+$vibpath = "/vmfs/volumes/NFS01/VIB/cisco/scsi-fnic_1.6.0.24-1OEM.600.0.0.2494585.vib"
 $vcenter = "vcenter.lab.local"
 $cred = Get-Credential
 
@@ -23,7 +23,7 @@ Get-VMhost -Location $Cluster | where { $_.PowerState -eq "PoweredOn" -and $_.Co
 		
 		# Create Installation Arguments
 		$insParm = @{
-			viburl = $viburl
+			viburl = $vibpath
 			dryrun = $false
 			nosigcheck = $true
 			maintenancemode = $false
