@@ -4,7 +4,7 @@
 
 # Define Variables
 $Cluster = "Cluster"
-$VIBPATH = "/vmfs/volumes/NFS01/VIB/cisco/scsi-fnic_1.6.0.24-1OEM.600.0.0.2494585.vib"
+$viburl = "/vmfs/volumes/NFS01/VIB/cisco/scsi-fnic_1.6.0.24-1OEM.600.0.0.2494585.vib"
 $vcenter = "vcenter.lab.local"
 $cred = Get-Credential
 
