@@ -11,8 +11,8 @@ $cluster = "MyCluster"
 $vmnetwork = "MyNetwork"
 $datastore = "MyDatastore"
 $vmfolder = "MyFolder"
-$vm1name = "srm1.lab"
-$vm2name = "srm2.lab"
+$vm1name = "srm1.my.lab"
+$vm2name = "srm2.my.lab"
 $vm1ip = "10.21.230.58"
 $vm2ip = "10.21.230.59"
 $addrfamily = "ipv4"
@@ -50,13 +50,13 @@ $ovfconfig.common.enable_sshd.value = $enablessh
 #vm1
 $ovfconfig.network.VMware_Site_Recovery_Manager_Appliance.ip0.value = $vm1ip
 $ovfconfig.common.vami.hostname.value = $vm1ip
-Import-VApp -Source $ovffile -OvfConfiguration $ovfconfig -Name $vm1ip -InventoryLocation $VMFolder -Location $cluster_ref -VMHost $vmhost_ref -Datastore $datastore_ref
+Import-VApp -Source $ovffile -OvfConfiguration $ovfconfig -Name $vm1name -InventoryLocation $VMFolder -Location $cluster_ref -VMHost $vmhost_ref -Datastore $datastore_ref
 
 #vm2
 $ovfconfig.network.VMware_Site_Recovery_Manager_Appliance.ip0.value = $vm2ip
-Import-VApp -Source $ovffile -OvfConfiguration $ovfconfig -Name $vm2ip -InventoryLocation $VMFolder -Location $cluster_ref -VMHost $vmhost_ref -Datastore $datastore_ref
+Import-VApp -Source $ovffile -OvfConfiguration $ovfconfig -Name $vm2name -InventoryLocation $VMFolder -Location $cluster_ref -VMHost $vmhost_ref -Datastore $datastore_ref
 
-$vms = get-vm $vm1ip,$vm2ip
+$vms = get-vm $vm1name,$vm2name
 $vm | Start-Vm -RunAsync | Out-Null
 
 Disconnect-VIServer $vcenter -Confirm:$false
