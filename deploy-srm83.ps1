@@ -47,12 +47,12 @@ $ovfconfig.common.vaadmin_password.value = $password
 $ovfconfig.common.dbpassword.value = $password
 $ovfconfig.common.enable_sshd.value = $enablessh
 
-#vm1
+#Deploy SRM1
 $ovfconfig.network.VMware_Site_Recovery_Manager_Appliance.ip0.value = $vm1ip
 $ovfconfig.common.vami.hostname.value = $vm1ip
 Import-VApp -Source $ovffile -OvfConfiguration $ovfconfig -Name $vm1name -InventoryLocation $VMFolder -Location $cluster_ref -VMHost $vmhost_ref -Datastore $datastore_ref
 
-#vm2
+#Deploy SRM2
 $ovfconfig.network.VMware_Site_Recovery_Manager_Appliance.ip0.value = $vm2ip
 Import-VApp -Source $ovffile -OvfConfiguration $ovfconfig -Name $vm2name -InventoryLocation $VMFolder -Location $cluster_ref -VMHost $vmhost_ref -Datastore $datastore_ref
 
