@@ -33,6 +33,7 @@ $network_ref = Get-VirtualPortGroup -Name $vmnetwork
 $cluster_ref = Get-Cluster -Name $cluster
 $vmhost_ref = $cluster_ref | Get-VMHost | Select -First 1
 
+$ovfconfig = Get-OvfConfiguration $ovffile
 $ovfconfig.NetworkMapping.Network_1.value = $vmnetwork
 $ovfconfig.network.VMware_Site_Recovery_Manager_Appliance.addrfamily.value  = $addrfamily
 $ovfconfig.network.VMware_Site_Recovery_Manager_Appliance.netmode.value  = $networkmode
