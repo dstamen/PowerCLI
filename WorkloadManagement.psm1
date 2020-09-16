@@ -1,4 +1,4 @@
-Function Get-vk8sNamespace {
+Function Get-WorkloadManagementNamespace {
 	<#
 		.NOTES
 		===========================================================================
@@ -31,7 +31,7 @@ Function Get-vk8sNamespace {
 		$summaryResult
     }
 }
-Function Get-vk8sCluster {
+Function Get-WorkloadManagementCluster {
 	<#
 		.NOTES
 		===========================================================================
@@ -68,7 +68,7 @@ Function Get-vk8sCluster {
 		$summaryResult
     }
 }
-Function Get-vk8sClusterSoftware {
+Function Get-WorkloadManagementClusterSoftware {
 	<#
 		.NOTES
 		===========================================================================
@@ -102,7 +102,7 @@ Function Get-vk8sClusterSoftware {
 		$summaryResult
     }
 }
-Function Get-vk8sClusterVersions {
+Function Get-WorkloadManagementClusterVersions {
 	<#
 		.NOTES
 		===========================================================================
@@ -136,7 +136,7 @@ Function Get-vk8sClusterVersions {
         }
     }
 }
-Function Get-vk8sAuthorizedNamespace {
+Function Get-WorkloadManagementAuthorizedNamespaces {
 	<#
 		.NOTES
 		===========================================================================
@@ -158,9 +158,9 @@ Function Get-vk8sAuthorizedNamespace {
 		$results = $systemUpdateAPI.list()
 
 		$summaryResult = [pscustomobject] @{
-            "Server" = $server.Name;
-            "Master Host" = $results.master_host;
 			"Namespace" = $results.namespace
+            "Master Host" = $results.master_host;
+            "Server" = $server.Name;
         }
 		$summaryResult
     }
