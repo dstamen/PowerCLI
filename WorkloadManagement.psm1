@@ -55,7 +55,8 @@ Function Get-WorkloadManagementCluster {
 		$summaryResult = [pscustomobject] @{
             "Server" = $server.Name;
             "Cluster" = $results.cluster;
-			"Cluster Name" = $results.cluster_name;
+			# Not Configured to report yet.
+			#"Cluster Name" = $results.cluster_name;
             "Config Status" = $results.config_status;
             "Kubernetes Status" = $results.kubernetes_status;
             "CPU Capacity" = $results.stats.cpu_capacity;
