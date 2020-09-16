@@ -57,7 +57,7 @@ Function Get-WorkloadManagementCluster {
             "Cluster" = $results.cluster;
 			"Cluster Name" = $results.cluster_name;
             "Config Status" = $results.config_status;
-            "Kubernetes Status" = $results.kubernetes.status;
+            "Kubernetes Status" = $results.kubernetes_status;
             "CPU Capacity" = $results.stats.cpu_capacity;
             "CPU Used" = $results.stats.cpu_used;
             "Memory Capacity" = $results.stats.memory_capacity;
