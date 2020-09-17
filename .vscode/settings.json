@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 12,
+    "editor.fontWeight": "normal",
+    "editor.formatOnSave": false,
+    "workbench.colorTheme": "GitHub Dark"
+}

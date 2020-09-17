@@ -69,6 +69,36 @@ Function Get-WorkloadManagementCluster {
 		$summaryResult
     }
 }
+Function Get-WorkloadManagementClusterCompatibility {
+	<#
+		.NOTES
+		===========================================================================
+        Created by:    David Stamen
+        Blog:          www.davidstamen.com
+        Twitter:       @davidstamen
+		===========================================================================
+		.SYNOPSIS
+			This function gets vSphere with Kubernetes Clusters.
+		.DESCRIPTION
+			Function to return details about the Supervisor Clusters
+		.EXAMPLE
+			Connect-CisServer -Server 192.168.1.51 -User administrator@vsphere.local -Password VMware1!
+			Get-vk8sCluster
+	#>
+	$servers = $Global:DefaultCisServers
+	foreach ($server in $servers) {
+		$systemUpdateAPI = Get-CisService -Name 'com.vmware.vcenter.namespace_management.cluster_compatibility' -Server $server.Name
+		$results = $systemUpdateAPI.list()
+
+		$summaryResult = [pscustomobject] @{
+			"Cluster" = $results.cluster;
+			"Compatible" = $results.compatible;
+			"Incompatible Reasons" = $results.incompatibility_reasons;
+            "Server" = $server.Name
+		}
+		$summaryResult
+    }
+}
 Function Get-WorkloadManagementClusterSoftware {
 	<#
 		.NOTES
