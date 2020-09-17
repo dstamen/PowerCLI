@@ -96,7 +96,7 @@ Function Get-WorkloadManagementClusterCompatibility {
 			"Incompatible Reasons" = $results.incompatibility_reasons.default_message;
             "Server" = $server.Name
 		}
-		$summaryResult
+		$summaryResult | fl
     }
 }
 Function Get-WorkloadManagementClusterSoftware {
