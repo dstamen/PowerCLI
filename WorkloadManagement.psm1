@@ -93,7 +93,7 @@ Function Get-WorkloadManagementClusterCompatibility {
 		$summaryResult = [pscustomobject] @{
 			"Cluster" = $results.cluster;
 			"Compatible" = $results.compatible;
-			"Incompatible Reasons" = $results.incompatibility_reasons;
+			"Incompatible Reasons" = $results.incompatibility_reasons.default_message;
             "Server" = $server.Name
 		}
 		$summaryResult
